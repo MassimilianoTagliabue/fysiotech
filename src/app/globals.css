@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+:root {
+  --surface: #f6f7f9;
+  --surface-elevated: #ffffff;
+  --ink: #1a1b1e;
+  --ink-muted: #5c6068;
+  --orange: #f7931e;
+  --orange-deep: #e07e0c;
+  --orange-soft: #fff4e6;
+  --steel: #58595b;
+  --steel-light: #8a8b8e;
+  --line: #e4e6ea;
+  --hero-overlay: #14151a;
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-orange: var(--orange);
+  --color-orange-deep: var(--orange-deep);
+  --color-orange-soft: var(--orange-soft);
+  --color-steel: var(--steel);
+  --color-steel-light: var(--steel-light);
+  --color-line: var(--line);
+  --color-hero-overlay: var(--hero-overlay);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.section-pad {
+  padding-block: clamp(4.25rem, 7.5vw, 6.75rem);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  color: #fff;
+  padding: 0.75rem 1.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: var(--orange-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(247, 147, 30, 0.28);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding: 0.75rem 1.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface-elevated);
+  color: var(--ink);
+  padding: 0.75rem 1.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--orange);
+  background: var(--orange-soft);
+  transform: translateY(-1px);
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface-elevated);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.18);
+}
+
+.field::placeholder {
+  color: var(--steel-light);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+}
+
+.badge-pulse::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: var(--orange);
+  animation: soft-pulse 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-fade-up-delay-2,
+  .badge-pulse::before,
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    animation: none;
+    transition: none;
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-outline:hover {
+    transform: none;
+  }
+}
